@@ -121,6 +121,11 @@
   .feat-row figcaption { font-size: 12.5px; }
   @media (max-width: 720px) { .feat-row { grid-template-columns: minmax(0, 1fr); } .feat-row .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   ol.log .mail { max-width: 520px; }
+  .codeshots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 14px 0 8px; }
+  .codeshots figure { margin: 0; }
+  .codeshots img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; }
+  .codeshots figcaption { font-size: 12.5px; }
+  @media (max-width: 720px) { .codeshots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; }
   .shots figure { margin: 0; }
   .shots img { width: 100%; aspect-ratio: 9 / 16; object-fit: contain; padding: 6px; }
@@ -381,7 +386,7 @@
     </table></div>
 
     <h3>화면</h3>
-    <div class="grid2">
+    <div class="codeshots">
       <figure><img src="img/codering-1-home.png" alt="코드링 홈, 8주 계획" loading="lazy"><figcaption>8주 계획 — “계획보다 1주 앞서 있어요”</figcaption></figure>
       <figure><img src="img/codering-progress-1028.png" alt="코드링 진도 화면" loading="lazy"><figcaption>진도 — 수업 4개, 코딩테스트 2단계 완료</figcaption></figure>
       <figure><img src="img/codering-2-problem.png" alt="문제 풀이 화면" loading="lazy"><figcaption>바로 실행하고 채점하는 문제</figcaption></figure>
