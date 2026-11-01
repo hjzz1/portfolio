@@ -358,8 +358,12 @@
     <h2>코드링 — 제 공부의 불편을 푸는 학습 사이트</h2>
     <div class="meta"><span class="pill">2026.9 – 현재</span><span class="pill">독학용</span></div>
 
-    <h3>왜 만들었나</h3>
-    <p>돌아보면 댕바디는 제가 코드를 읽어서가 아니라, AI에게 묻고 결과를 확인하며 만든 것이었습니다. 무엇이 잘못됐는지 제 눈으로 보지 못하는 게 가장 큰 한계였습니다. 댕바디와 코드링이 자바스크립트로 되어 있어서, 자바스크립트부터 배우기로 했습니다.</p>
+    <dl class="brief">
+      <div><dt>문제</dt><dd>댕바디는 AI에게 묻고 결과를 확인하며 만들었습니다. 무엇이 틀렸는지 제 눈으로 보지 못하는 게 가장 큰 한계였습니다.</dd></div>
+      <div><dt>한 일</dt><dd>공부하려고 자바스크립트 학습 사이트를 직접 만들었습니다. 배운 것만으로 문제를 내게 하고, 틀렸던 문제는 오늘의 복습으로 다시 나오게 했습니다.</dd></div>
+      <div><dt>결과</dt><dd>10월 13일부터 하루 4시간 이상 공부해 계획보다 1주 앞섰고, 수업 4개와 코딩테스트 2단계를 마쳤습니다. 아직 혼자 오류를 고칠 수준은 아닙니다.</dd></div>
+      <div><dt>배운 점</dt><dd>AI가 고친 코드를 그대로 받지 않고 “고치는 게 먼저가 아니라 날 이해시키는 게 먼저”라고 요구하게 됐습니다.</dd></div>
+    </dl>
 
     <div class="stats">
       <div class="stat"><b>4시간+</b><span>10/13부터 하루 공부 시간</span></div>
@@ -367,37 +371,23 @@
       <div class="stat"><b>3건</b><span>공부하다 찾아낸 채점 오류</span></div>
     </div>
 
-    <div class="grid2">
-      <figure><img src="img/codering-1-home.png" alt="코드링 홈, 8주 계획" loading="lazy"><figcaption>8주 계획 화면 — “계획보다 1주 앞서 있어요”</figcaption></figure>
-      <figure><img src="img/codering-3-review.png" alt="오늘의 복습 화면" loading="lazy"><figcaption>틀렸던 문제부터 다시 나오는 오늘의 복습</figcaption></figure>
-    </div>
-
-    <h3>막힐 때마다 기능을 더했습니다</h3>
-    <div class="tablebox"><table>
-      <tr><th style="width:38%">막힌 곳</th><th>더한 기능</th></tr>
-      <tr><td>왜 틀렸는지 모를 때</td><td>틀린 곳 짚기, AI 해설, 틀려도 답지 보기</td></tr>
-      <tr><td>안 배운 개념이 문제에 나올 때</td><td>배운 것만 가지고 문제를 내도록 요청</td></tr>
-      <tr><td>어려운 문제를 다시 찾기 힘들 때</td><td>오늘의 복습, 어려운 문제 모아 풀기</td></tr>
-    </table></div>
-
     <h3>공부하다 찾아낸 채점 오류</h3>
-    <p>제가 틀렸다고 생각한 답이 정답으로 나온 적이 있었습니다. AI에게 “이렇게 해도 맞는데 원하는 답이 맞냐”고 물었고, 그런 일이 없도록 채점을 고치게 했습니다. 이렇게 찾은 오류가 세 건입니다.</p>
+    <p>틀렸다고 생각한 답이 정답으로 나오면 AI에게 “이렇게 해도 맞는데 원하는 답이 맞냐”고 묻고, 채점을 고치게 했습니다.</p>
     <div class="tablebox"><table>
       <tr><th style="width:55%">찾은 문제</th><th>AI에게 고치게 한 것</th></tr>
-      <tr><td>값은 그대로 두고 출력만 바꿔도 통과됐습니다.</td><td>채점 방식을 바꿨습니다.</td></tr>
-      <tr><td>틀린 조건문도 정답으로 나왔습니다. 값 하나로만 검사해서 생긴 일이었습니다.</td><td>“다른 값으로 한 번 더” 검사하게 했습니다.</td></tr>
-      <tr><td>주사위 문제에서 두 값이 같은 경우를 놓친 코드도 통과됐습니다.</td><td>그 실수를 잡는 검사를 더했습니다.</td></tr>
+      <tr><td>출력만 바꿔도 통과됨</td><td>채점 방식 변경</td></tr>
+      <tr><td>틀린 조건문도 정답 처리 (값 하나로만 검사)</td><td>“다른 값으로 한 번 더” 검사</td></tr>
+      <tr><td>주사위 문제에서 두 값이 같은 경우를 놓친 코드도 통과</td><td>그 실수를 잡는 검사 추가</td></tr>
     </table></div>
 
+    <h3>화면</h3>
     <div class="grid2">
-      <figure><img src="img/codering-progress-1028.png" alt="코드링 진도 화면" loading="lazy"><figcaption>진도 화면 — 수업 4개, 코딩테스트 2단계 완료</figcaption></figure>
-      <figure><img src="img/codering-2-problem.png" alt="문제 풀이 화면" loading="lazy"><figcaption>바로 실행하고 채점하는 문제 화면</figcaption></figure>
+      <figure><img src="img/codering-1-home.png" alt="코드링 홈, 8주 계획" loading="lazy"><figcaption>8주 계획 — “계획보다 1주 앞서 있어요”</figcaption></figure>
+      <figure><img src="img/codering-progress-1028.png" alt="코드링 진도 화면" loading="lazy"><figcaption>진도 — 수업 4개, 코딩테스트 2단계 완료</figcaption></figure>
+      <figure><img src="img/codering-2-problem.png" alt="문제 풀이 화면" loading="lazy"><figcaption>바로 실행하고 채점하는 문제</figcaption></figure>
+      <figure><img src="img/codering-3-review.png" alt="오늘의 복습 화면" loading="lazy"><figcaption>틀렸던 문제부터 다시 나오는 오늘의 복습</figcaption></figure>
     </div>
-
-    <h3>지금까지</h3>
-    <p>10월 13일부터 하루 4시간 이상 공부했습니다. 2주 만에 수업 3개와 코딩테스트 1단계를 끝내 계획보다 1주 앞섰고, 지금은 수업 4개와 코딩테스트 2단계까지 마쳤습니다. 기초적인 조건문은 읽고 어디가 틀렸는지 스스로 찾을 수 있습니다. 아직 혼자 오류를 고칠 수준은 아닙니다.</p>
-    <blockquote>고치는 게 먼저가 아니라 날 이해시키는 게 먼저<cite>이제는 AI가 고친 코드를 그대로 받지 않고, 이렇게 요구합니다.</cite></blockquote>
-    <p class="hint">코드링에는 자바스크립트·HTML/CSS 수업 31개, 문제 281개, 자동 테스트 3,149개가 있습니다.</p>
+    <p class="hint">자바스크립트·HTML/CSS 수업 31개 · 문제 281개 · 자동 테스트 3,149개</p>
   </div>
 </section>
 
