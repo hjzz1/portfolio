@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이희종 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;800&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one reading column; each project is a case file — 불편 → 한 것 → 막힘과 다시 시도 → 결과, dates set in mono like a log */
+  :root {
+    --bg: #f5f6f3;
+    --paper: #ffffff;
+    --ink: #1d2320;
+    --sub: #5d6661;
+    --line: #dfe3dd;
+    --accent: #2f6f4a;      /* 쑥·말차 green */
+    --accent-soft: #e4efe7;
+    --glaze: #c2416b;        /* glaze pink, used sparingly */
+    --glaze-soft: #fbe9ef;
+    --display: "Gothic A1", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --body: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141816; --paper: #1b201d; --ink: #e8ece9; --sub: #a3aca6; --line: #2e3531;
+      --accent: #7cc49a; --accent-soft: #1f3328; --glaze: #ef8fae; --glaze-soft: #3a2029;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141816; --paper: #1b201d; --ink: #e8ece9; --sub: #a3aca6; --line: #2e3531;
+    --accent: #7cc49a; --accent-soft: #1f3328; --glaze: #ef8fae; --glaze-soft: #3a2029;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.75;
+    word-break: keep-all; overflow-wrap: anywhere;
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  .wrap {
+    max-width: 920px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  nav.top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; gap: 4px 18px; align-items: center; flex-wrap: wrap; padding-block: 10px; }
+  nav.top b { font-family: var(--display); font-weight: 800; margin-right: auto; }
+  nav.top a { color: var(--sub); text-decoration: none; font-size: 14px; }
+  nav.top a:hover { color: var(--ink); }
+
+  header.hero { padding-block: 64px 40px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--accent); text-transform: uppercase; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.3; }
+  h1 { font-size: clamp(34px, 7vw, 56px); font-weight: 800; margin: 10px 0 8px; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(26px, 4.5vw, 36px); font-weight: 800; margin: 6px 0 12px; letter-spacing: -0.01em; }
+  h3 { font-size: 19px; font-weight: 700; margin: 36px 0 10px; }
+  .who { color: var(--sub); margin: 0 0 22px; }
+  .thesis { font-size: 19px; max-width: 34em; margin: 0; }
+
+  .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
+  .case {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px;
+    display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit;
+  }
+  .case:hover { border-color: var(--accent); }
+  .case .k { font-family: var(--mono); font-size: 12px; color: var(--sub); }
+  .case strong { font-family: var(--display); font-size: 20px; }
+  .case dl { margin: 0; display: grid; gap: 6px; font-size: 14px; }
+  .case dt { font-size: 12px; color: var(--accent); font-weight: 700; }
+  .case dd { margin: 0; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; font-size: 14px; }
+  .links span { color: var(--sub); }
+
+  section.project { padding-block: 64px; border-top: 1px solid var(--line); }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+  .pill { font-size: 13px; padding: 2px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+  .pill.pink { background: var(--glaze-soft); color: var(--glaze); }
+  p { margin: 0 0 14px; max-width: 40em; }
+  blockquote {
+    margin: 18px 0; padding: 14px 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+    font-size: 17px; max-width: 40em;
+  }
+  blockquote cite { display: block; font-style: normal; font-size: 13px; color: var(--sub); margin-top: 6px; }
+
+  figure { margin: 18px 0; }
+  figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); cursor: zoom-in; background: var(--paper); }
+  figcaption { font-size: 13.5px; color: var(--sub); margin-top: 8px; }
+  .grid2, .grid3 { display: grid; gap: 14px; align-items: start; }
+  .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid2 figure, .grid3 figure { margin: 0; }
+  .phone img { max-height: 520px; width: auto; margin: 0 auto; }
+
+  .tablebox { overflow-x: auto; margin: 10px 0 18px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 520px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  th { font-size: 13px; color: var(--sub); font-weight: 500; }
+  td.d, td.n { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td.n { text-align: right; }
+
+  /* timeline: 막힘과 다시 시도 */
+  ol.log { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 0; }
+  ol.log li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+  ol.log .date { font-family: var(--mono); font-size: 13.5px; color: var(--sub); padding-top: 2px; }
+  ol.log .what { font-weight: 700; }
+  ol.log .then { color: var(--sub); }
+  ol.log .then::before { content: "→ "; color: var(--accent); font-weight: 700; }
+  ol.log .stop { color: var(--glaze); font-family: var(--mono); font-size: 12px; margin-right: 6px; }
+  ol.log figure { margin: 12px 0 0; }
+  ol.log .grid2 { margin-top: 12px; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 22px 0; }
+  .stat { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .stat b { display: block; font-family: var(--display); font-size: 26px; color: var(--accent); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 13.5px; color: var(--sub); }
+
+  .reviews { display: grid; gap: 10px; margin: 14px 0; }
+  .reviews figure { margin: 0; }
+
+  footer { padding-block: 48px 72px; border-top: 1px solid var(--line); color: var(--sub); font-size: 14px; }
+
+  /* lightbox */
+  .lb { position: fixed; inset: 0; z-index: 20; background: rgba(10,12,11,.88); display: flex; align-items: center; justify-content: center;
+        padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+  .lb img { max-width: 100%; max-height: 100%; border-radius: 8px; background: #fff; }
+  .lb button { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px));
+               background: #fff; color: #1d2320; border: 0; border-radius: 99px; padding: 6px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+
+  @media (max-width: 720px) {
+    .cases, .grid3, .stats { grid-template-columns: minmax(0, 1fr); }
+    .grid2 { grid-template-columns: minmax(0, 1fr); }
+    .grid2.keep { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    ol.log li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .phone img { max-height: 420px; }
+  }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="목차">
+  <div class="wrap">
+    <b>이희종</b>
+    <a href="#daengbody">댕바디</a>
+    <a href="#codering">코드링</a>
+    <a href="#swell">스웰커피앤도넛</a>
+    <a href="#next">앞으로</a>
+  </div>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SK AIGEN 1기 지원 포트폴리오</div>
+    <h1>가까이 있는 불편부터</h1>
+    <p class="who">이희종 · 1지망 사회·공공·교육 / 2지망 창업·비즈니스</p>
+    <p class="thesis">가까이에서 들은 불편을 AI로 직접 만들어 풀어 왔고, 이제는 더 많은 사람이 겪는 사회·공공의 불편으로 넓히고 싶습니다.</p>
+
+    <div class="cases">
+      <a class="case" href="#daengbody">
+        <span class="k">2026.8 – 현재</span>
+        <strong>댕바디</strong>
+        <dl>
+          <div><dt>불편</dt><dd>검진표를 종이로 들고 다니며 다시 찾고, 수치의 뜻을 잊음</dd></div>
+          <div><dt>한 것</dt><dd>코딩을 배운 적 없이 AI와 함께 검진표를 읽고 설명하는 앱을 만듦</dd></div>
+          <div><dt>결과</dt><dd>반려 2회 뒤 10/1 앱스토어 출시</dd></div>
+        </dl>
+      </a>
+      <a class="case" href="#codering">
+        <span class="k">2026.9 – 현재</span>
+        <strong>코드링</strong>
+        <dl>
+          <div><dt>불편</dt><dd>AI가 짠 코드에서 무엇이 틀렸는지 스스로 보지 못함</dd></div>
+          <div><dt>한 것</dt><dd>내가 첫 사용자인 코딩 학습 사이트를 만듦</dd></div>
+          <div><dt>결과</dt><dd>하루 4시간 이상, 계획보다 1주 앞섬</dd></div>
+        </dl>
+      </a>
+      <a class="case" href="#swell">
+        <span class="k">2025.9 – 2026.10</span>
+        <strong>스웰커피앤도넛</strong>
+        <dl>
+          <div><dt>불편</dt><dd>석 달째 월 매출 약 950만 원에서 멈춤</dd></div>
+          <div><dt>한 것</dt><dd>배달을 늘려도 그대로라, 메뉴를 바꿈</dd></div>
+          <div><dt>결과</dt><dd>2026년 2월 월 매출 2,466만 원 (약 2.6배)</dd></div>
+        </dl>
+      </a>
+    </div>
+
+    <div class="links">
+      <span>링크</span>
+      <a href="https://daengbody.com">daengbody.com</a>
+      <a href="https://apps.apple.com/app/id6815108181">댕바디 App Store</a>
+      <a href="https://saju-care.com">코드링 (saju-care.com)</a>
+      <a href="https://github.com/hjzz1/js-study">공부 기록 (GitHub)</a>
+    </div>
+  </div>
+</header>
+
+<!-- 댕바디 -->
+<section class="project" id="daengbody">
+  <div class="wrap">
+    <div class="eyebrow">Project 1</div>
+    <h2>댕바디 — 보호자의 검진표를 읽기 쉽게</h2>
+    <div class="meta"><span class="pill">2026.8 – 현재</span><span class="pill">iOS 출시</span><span class="pill pink">구글 플레이 재테스트 중</span></div>
+
+    <h3>불편</h3>
+    <p>카페에는 강아지와 함께 오는 손님이 많았습니다. 한 단골 보호자와 이야기하다 불편을 들었습니다.</p>
+    <blockquote>1년에 한두 번 받는 건강검진표를 종이로 들고 다니다 보니 필요할 때마다 다시 찾아야 하고, 병원에서 설명을 들어도 시간이 지나면 수치의 뜻을 잊는다.<cite>단골 보호자에게 들은 불편. 다른 단골들도 “그런 게 있으면 너무 좋겠다”고 했습니다.</cite></blockquote>
+    <p>검진표뿐 아니라 접종 내역, 몸무게 같은 기록도 앱·수첩·서랍에 흩어져 있어, 시간이 지나며 수치가 어떻게 변했는지 한눈에 볼 수 없었습니다.</p>
+
+    <h3>만든 것</h3>
+    <p>검진표 PDF나 사진을 올리면 AI가 수치를 읽어 기록하고, 무엇을 조심해야 하는지 쉬운 말로 설명하는 앱입니다. 기록이 쌓이면 수치·체중·약 용량이 어떻게 변했는지 그래프로 보여 줍니다. 건강 정보라 틀리면 안 되니, 검진표에 없는 값은 AI가 채우지 말고 비워 두게 했습니다.</p>
+    <figure>
+      <img src="img/daengbody-checkup-3steps.png" alt="검진표 올리기, AI가 읽은 기록, 쉬운 설명 세 화면" loading="lazy">
+      <figcaption>뽀슬이의 실제 검진표(2026.05.23)를 올리기 → AI가 64개 값을 읽어 기록 → 확인할 점을 쉬운 말로 설명</figcaption>
+    </figure>
+    <div class="tablebox"><table>
+      <tr><th style="width:18%">만든 방식</th><td>코딩은 배워 본 적이 없었습니다. 8월에 바이브코딩 온라인 강의를 들으며 시작했고, 강의는 웹사이트까지라 앱으로 옮기는 일은 AI와 처음부터 다시 했습니다. 기능은 Cursor와 Claude, 디자인은 Codex를 썼습니다.</td></tr>
+      <tr><th>기술</th><td>Next.js, Firebase, Google Gemini(검진표 인식)</td></tr>
+      <tr><th>규모</th><td>커밋 108개, 기능 모듈 21개, 자동 테스트 357개</td></tr>
+    </table></div>
+
+    <h3>막힘과 다시 시도</h3>
+    <ol class="log">
+      <li><span class="date">8/28</span><div><div class="what">처음 만들기 시작</div></div></li>
+      <li><span class="date">9/24</span><div><div class="what"><span class="stop">반려</span>앱스토어 1차 반려: 권한 설명이 도구가 넣은 기본 문구</div><div class="then">카메라·위치의 실제 용도를 적고, 쓰지 않는 마이크 권한을 지움</div></div></li>
+      <li><span class="date">9/25</span><div><div class="what"><span class="stop">반려</span>2차 반려: 앱 안에서 Apple 로그인이 끝나지 않음</div><div class="then">로그인 방식을 바꿔 9/29 다시 제출</div>
+        <figure><img src="img/appstore-rejected-2-0925.png" alt="9월 25일 앱스토어 2차 반려 메시지" loading="lazy"><figcaption>9/25 2차 반려 — Guideline 2.1(a), Apple로 가입을 끝낼 수 없음</figcaption></figure></div></li>
+      <li><span class="date">10/1</span><div><div class="what">승인, iOS 출시</div>
+        <figure><img src="img/appstore-2-approved-1.0-1001-masked.png" alt="10월 1일 앱스토어 승인 메일" loading="lazy"><figcaption>10/1 승인 메일</figcaption></figure></div></li>
+      <li><span class="date">10/2</span><div><div class="what">아이폰에서 로그인해도 다시 로그인 화면으로 돌아감</div><div class="then">가게를 정리하기 전에 단골들께 드리려면 시간이 없었음. AI에게 고쳐 달라고 해, 다시 심사받지 않아도 되는 방법으로 하루 만에 해결</div>
+        <figure class="phone"><img src="img/login-bug-2-back-to-login.jpg" alt="로그인 뒤 다시 로그인 화면으로 돌아간 화면" loading="lazy"><figcaption>로그인 뒤 다시 돌아간 로그인 화면</figcaption></figure></div></li>
+      <li><span class="date">10월 초</span><div><div class="what">가게에 놀러 온 동기에게 테스트를 부탁 → “화면 위쪽 여백이 너무 크다”</div><div class="then">고쳐서 10/2 제출, 10/3 1.1 업데이트 승인</div>
+        <div class="grid2 keep">
+          <figure class="phone"><img src="img/daengbody-margin-before-1002.jpg" alt="여백 수정 전 화면" loading="lazy"><figcaption>고치기 전</figcaption></figure>
+          <figure class="phone"><img src="img/daengbody-margin-after-1004.jpg" alt="여백 수정 후 화면" loading="lazy"><figcaption>고친 뒤</figcaption></figure>
+        </div></div></li>
+      <li><span class="date">10/25</span><div><div class="what"><span class="stop">거부</span>구글 플레이 정식 출시 거부: 테스터가 실제로 쓰지 않았고, 의견을 받아 업데이트하지 않음</div><div class="then">같은 날 테스터를 다시 모아 재테스트 중</div>
+        <figure><img src="img/googleplay-rejected-1025-masked.png" alt="10월 25일 구글 플레이 거부 메일" loading="lazy"><figcaption>10/25 구글 플레이 메일</figcaption></figure></div></li>
+    </ol>
+
+    <h3>결과와 배운 것</h3>
+    <p>8월 28일에 시작해 10월 1일 앱스토어에 냈습니다. 가게를 정리하기 전 단골 보호자들께 드렸고, 써 본 분들은 “괜찮다, 계속 쓸 것 같다”고 했습니다. 하지만 구글 플레이에서는 테스터가 실제로 쓰지 않았다는 이유로 반려됐습니다. 만드는 것만큼 사람들이 직접 쓰고 말해 주는 과정이 중요하다는 것을 배웠습니다.</p>
+    <p>검진표를 찾고 이해하는 일이 실제로 쉬워졌는지는 아직 확인하지 못했습니다.</p>
+  </div>
+</section>
+
+<!-- 코드링 -->
+<section class="project" id="codering">
+  <div class="wrap">
+    <div class="eyebrow">Project 2</div>
+    <h2>코드링 — 내 배움의 불편을 푸는 학습 사이트</h2>
+    <div class="meta"><span class="pill">2026.9 – 현재</span><span class="pill">사용자: 나 한 명</span></div>
+
+    <h3>불편</h3>
+    <p>돌아보면 댕바디는 제가 코드를 읽어서가 아니라 AI에게 묻고 결과를 확인하며 만든 것이었습니다. 무엇이 잘못됐는지 스스로 보지 못하는 것이 가장 큰 한계였습니다. 댕바디와 코드링이 자바스크립트로 되어 있어서, 자바스크립트부터 배우기로 했습니다.</p>
+
+    <div class="stats">
+      <div class="stat"><b>4시간+</b><span>10/13부터 하루 공부 시간</span></div>
+      <div class="stat"><b>수업 4개</b><span>코딩테스트 2단계까지 완료</span></div>
+      <div class="stat"><b>3건</b><span>공부하다 찾아 고친 채점 문제</span></div>
+    </div>
+
+    <div class="grid2">
+      <figure><img src="img/codering-1-home.png" alt="코드링 홈, 8주 계획" loading="lazy"><figcaption>8주 계획 · “계획보다 1주 앞서 있어요”</figcaption></figure>
+      <figure><img src="img/codering-3-review.png" alt="오늘의 복습 화면" loading="lazy"><figcaption>틀렸던 문제부터 다시 나오는 오늘의 복습</figcaption></figure>
+    </div>
+
+    <h3>막힐 때마다 더한 기능</h3>
+    <div class="tablebox"><table>
+      <tr><th style="width:38%">막힌 곳</th><th>더한 기능</th></tr>
+      <tr><td>왜 틀렸는지 모름</td><td>틀린 곳 짚기, AI 해설, 틀려도 답지 보기</td></tr>
+      <tr><td>안 배운 개념이 문제에 나옴</td><td>배운 것만 토대로 문제를 내도록 요청, 수업마다 안 배운 문법 점검</td></tr>
+      <tr><td>어려운 문제를 다시 찾기 힘듦</td><td>오늘의 복습, 어려운 문제 모아 풀기</td></tr>
+    </table></div>
+
+    <h3>공부하다 직접 찾은 채점 문제</h3>
+    <div class="tablebox"><table>
+      <tr><th style="width:12%">날짜</th><th style="width:50%">찾은 문제</th><th>고친 것</th></tr>
+      <tr><td class="d">10/7</td><td>값은 안 바꾸고 출력만 바꿔도 통과됨</td><td>채점 방식 수정</td></tr>
+      <tr><td class="d">10/23</td><td>틀린 조건문도 정답으로 나옴 (값 하나로만 검사)</td><td>“다른 값으로 한 번 더” 검사 추가</td></tr>
+      <tr><td class="d">10/27</td><td>주사위 문제에서 두 값이 같은 경우를 놓친 코드도 통과됨</td><td>그 실수를 잡는 검사 추가</td></tr>
+    </table></div>
+
+    <div class="grid2">
+      <figure><img src="img/codering-progress-1028.png" alt="코드링 진도 화면" loading="lazy"><figcaption>진도 — 수업 4개·코딩테스트 2단계 완료</figcaption></figure>
+      <figure><img src="img/codering-2-problem.png" alt="문제 풀이 화면" loading="lazy"><figcaption>바로 실행하고 채점하는 문제</figcaption></figure>
+    </div>
+
+    <h3>결과</h3>
+    <p>10월 13일부터 하루 4시간 이상 공부해, 2주 만에 수업 3개와 코딩테스트 1단계를 끝내 계획보다 1주 앞섰습니다. 지금은 수업 4개와 코딩테스트 2단계까지 마쳤고, 기초적인 조건문은 읽고 어디가 틀렸는지 스스로 찾을 수 있습니다. 아직 혼자 오류를 고칠 수준은 아닙니다.</p>
+    <blockquote>고치는 게 먼저가 아니라 날 이해시키는 게 먼저<cite>AI가 고친 코드를 그대로 받지 않고, 이렇게 요구하게 됐습니다.</cite></blockquote>
+    <p style="color:var(--sub);font-size:14px">규모: 자바스크립트·HTML/CSS 수업 31개, 문제 281개, 자동 테스트 3,149개</p>
+  </div>
+</section>
+
+<!-- 카페 -->
+<section class="project" id="swell">
+  <div class="wrap">
+    <div class="eyebrow">Experience</div>
+    <h2>스웰커피앤도넛 — 멈춘 매출을 메뉴로 바꾸다</h2>
+    <div class="meta"><span class="pill">동업 창업</span><span class="pill">2025.9 – 2026.10</span><span class="pill">인테리어 직접</span></div>
+
+    <h3>직접 만든 가게</h3>
+    <p>가구, 커피바, 테이블부터 벽지와 페인트까지 인테리어를 전부 직접 했습니다.</p>
+    <div class="grid2">
+      <figure><img src="img/cafe-interior-before.jpg" alt="공사 중인 매장, 나무 상판을 올린 커피바" loading="lazy"><figcaption>공사 중 — 커피바를 직접 짜는 중</figcaption></figure>
+      <figure><img src="img/cafe-interior-hall.jpg" alt="완성된 매장" loading="lazy"><figcaption>완성된 매장</figcaption></figure>
+    </div>
+
+    <h3>덜 달고 담백하게</h3>
+    <p>도넛은 건강에 좋지 않다는 이미지가 있어서, 한 번 먹고 끝나는 디저트가 아니라 일상에서 꾸준히 찾아 먹는 디저트를 만들고 싶었습니다. 동업자는 “그래도 디저트는 좀 달아야 하지 않을까”라고 했고, 저는 매일 먹어도 부담 없는 디저트를 만들자고 했습니다. 지인들을 불러 모아 “매일 부담스럽지 않게 먹을 수 있는 맛이 무엇인지” 물으며 함께 맛을 정했고, 도넛도 두바이쫀득쿠키도 덜 달고 담백하게 만들었습니다.</p>
+    <div class="reviews">
+      <figure><img src="img/cafe-review-notsweet-1001.png" alt="리뷰: 도넛이 퐁신퐁신하고 너무 달지도 않고 맛있어요" loading="lazy"></figure>
+      <figure><img src="img/cafe-review-notsweet-0903.png" alt="리뷰: 생일케이크 대신 시켜서 먹었어요, 크림도 많이 안 달고" loading="lazy"></figure>
+      <figure><img src="img/cafe-review-daily-0813.png" alt="4회 주문 손님 리뷰: 생각날 때마다 주문해 먹는 도넛입니다" loading="lazy"><figcaption>네 번째 주문한 손님: “생각날 때마다 주문해 먹는 도넛입니다”</figcaption></figure>
+    </div>
+
+    <h3>매출이 멈췄을 때</h3>
+    <p>2025년 9~11월, 월 매출은 약 950만 원, 주문은 월 750건 안팎에서 움직이지 않았습니다. 배달 비중을 14%에서 38%까지 늘렸지만 주문 수는 그대로였습니다. 파는 통로를 바꿔도 주문이 늘지 않자, 이번에는 메뉴를 바꿔 보기로 했습니다.</p>
+    <p>제가 “가만히 있지 말고 뭐라도 해봐야 하지 않겠냐”고 했고, 동업자도 “그래, 할 수 있는 건 다 해봐야지”라고 했습니다. 인스타그램에서 두바이쫀득쿠키를 발견하고 인천 계산동의 유명한 가게에 가서 줄을 서서 사 왔습니다. 하루 이틀 배합을 맞춘 뒤, 발견한 지 일주일 안에 메뉴로 냈습니다.</p>
+    <div class="grid2">
+      <figure><img src="img/cafe-cookie-tray.jpg" alt="직접 만든 두바이쫀득쿠키" loading="lazy"><figcaption>직접 만든 두바이쫀득쿠키</figcaption></figure>
+      <figure><img src="img/cafe-donuts.jpg" alt="도넛" loading="lazy"><figcaption>함께 팔던 도넛</figcaption></figure>
+    </div>
+
+    <figure><img src="img/sales-chart.png" alt="쫀득쿠키 출시 전후 월 매출 그래프" loading="lazy"><figcaption>쫀득쿠키 출시 전후 월 매출 (포스 월 정산 영수증 기준)</figcaption></figure>
+    <div class="tablebox"><table>
+      <tr><th>월</th><th style="text-align:right">실매출 (포스 영수증)</th><th>비고</th></tr>
+      <tr><td class="d">2025.9</td><td class="n">954만 원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.10</td><td class="n">942만 원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.11</td><td class="n">967만 원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.12</td><td class="n">1,851만 원</td><td>12월 초 쿠키 출시</td></tr>
+      <tr><td class="d">2026.1</td><td class="n">2,365만 원</td><td></td></tr>
+      <tr><td class="d">2026.2</td><td class="n">2,466만 원</td><td>출시 전 평균의 약 2.6배</td></tr>
+    </table></div>
+    <p>월 주문도 750건 안팎에서 1,541건(2026년 2월)으로 늘었습니다. 쫀득쿠키를 보고 처음 온 손님들이 도넛과 커피도 같이 사 가면서, 동네에서 맛있는 도넛 카페로 소문이 났습니다.</p>
+    <div class="grid2">
+      <figure><img src="img/cafe-review-1206-a.jpg" alt="12월 6일 배달 리뷰" loading="lazy"><figcaption>출시 직후(12/6) 리뷰 — 쫀득쿠키와 도넛을 같이 주문</figcaption></figure>
+      <figure><img src="img/sales-receipts.png" alt="포스 월 정산 영수증" loading="lazy"><figcaption>근거: 포스 월 정산 영수증 원본</figcaption></figure>
+    </div>
+
+    <h3>동업자에게 배운 것</h3>
+    <p>저는 계획대로 되지 않으면 스트레스를 많이 받는 편이었습니다. 동업자는 재고가 떨어져 일찍 문을 닫아야 하는 날에도 “일찍 끝나면 더 쉬고 좋지, 빨리 가서 맛있는 저녁 먹자”는 식이었습니다. 하루 평균 12시간을 함께 일하며 그 모습이 저에게도 영향을 줬습니다.</p>
+  </div>
+</section>
+
+<!-- 앞으로 -->
+<section class="project" id="next">
+  <div class="wrap">
+    <div class="eyebrow">Next</div>
+    <h2>앞으로</h2>
+    <p>댕바디는 단골의 이야기에서, 코드링은 제 자신의 막힘에서 시작했습니다. 둘 다 가까이 있는 불편이 출발점이었습니다.</p>
+    <p>반려견도 가족이라는 인식이 강해지면서, 검진표 같은 불편도 많은 사람이 함께 겪는 문제라고 생각합니다. 아이젠에서는 더 많은 사람이 겪는 사회·공공의 불편을 듣고, AI로 풀 수 있는 것부터 직접 만들어 보고 싶습니다.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">이희종 · SK AIGEN 1기 지원 포트폴리오 · 사진을 누르면 크게 볼 수 있습니다.</div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <button type="button" id="lbClose">닫기</button>
+  <img id="lbImg" alt="">
+</div>
+
+<script>
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  function closeLb() { lb.hidden = true; lbImg.removeAttribute('src'); }
+  document.querySelectorAll('figure img').forEach(img => {
+    img.addEventListener('click', () => { lbImg.src = img.src; lbImg.alt = img.alt; lb.hidden = false; document.getElementById('lbClose').focus(); });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+</script>
+</body>
+</html>
