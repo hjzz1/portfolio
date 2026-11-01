@@ -182,6 +182,32 @@
     .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  @media print {
+    @page { size: A4; margin: 14mm 12mm; }
+    :root { --bg: #ffffff; --paper: #ffffff; }
+    body { margin: 0; font-size: 12.5px; line-height: 1.6; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    nav.top, .lb, .compare input, .compare .bar, p.hint.slide-hint, footer { display: none !important; }
+    header.hero { padding-block: 0 16px; }
+    section.project { padding-block: 0; border-top: 0; break-before: page; }
+    h2, h3, h4 { break-after: avoid; }
+    figure, .case, .stat, blockquote, tr, ol.log li, .tablebox { break-inside: avoid; }
+    .build { display: grid; grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
+    .build img { aspect-ratio: 3 / 4; }
+    .compare { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border: 0; }
+    .compare img { position: static; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .compare .before { clip-path: none; order: -1; }
+    .compare .tag { display: none; }
+    .phone img { height: 300px; }
+    .mail img { aspect-ratio: 3 / 2; }
+    .wide img { aspect-ratio: 16 / 7; }
+    .feat-group .grid2 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .feat-group .grid2 figure { grid-column: span 2; display: grid; grid-template-columns: 42% 1fr; gap: 10px; align-items: start; }
+    .feat img { aspect-ratio: 3 / 4; }
+    .mail img { max-height: 260px; width: auto; max-width: 100%; aspect-ratio: auto; object-fit: contain; }
+    .shots img { aspect-ratio: 9 / 15; }
+    .links a::after { content: " (" attr(href) ")"; font-size: 10px; color: var(--sub); }
+  }
 </style>
 </head>
 <body>
@@ -385,7 +411,7 @@
       <span class="tag l">전</span><span class="tag r">후</span>
       <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="공사 전과 후 사진 비교, 좌우로 밀기">
     </div>
-    <p class="hint">가운데 막대를 좌우로 밀면 같은 자리의 공사 전과 후를 비교할 수 있습니다.</p>
+    <p class="hint slide-hint">가운데 막대를 좌우로 밀면 같은 자리의 공사 전과 후를 비교할 수 있습니다.</p>
 
     <ol class="build">
       <li><figure><img src="img/cafe-before-1-empty.jpg" alt="비어 있던 가게 안쪽" loading="lazy"><figcaption><span class="step">시작</span>비어 있던 가게</figcaption></figure></li>
@@ -401,7 +427,7 @@
       <li><figure><img src="img/cafe-mid-6-stain-chairs.jpg" alt="칠을 마친 커피바와 뒤쪽의 의자들" loading="lazy"><figcaption><span class="step">마감</span>칠을 마친 커피바와 직접 만든 의자들</figcaption></figure></li>
       <li><figure><img src="img/cafe-after-window.jpg" alt="완성된 창가 자리" loading="lazy"><figcaption><span class="step">완성</span>완성된 창가 자리</figcaption></figure></li>
     </ol>
-    <p class="hint">옆으로 넘겨 보세요.</p>
+    <p class="hint slide-hint">옆으로 넘겨 보세요.</p>
 
     <div class="grid2">
       <figure><img src="img/cafe-interior-hall.jpg" alt="완성된 매장 전체" loading="lazy"><figcaption>완성된 매장</figcaption></figure>
