@@ -130,6 +130,27 @@
   .reviews { display: grid; gap: 10px; margin: 14px 0; }
   .reviews figure { margin: 0; }
 
+  /* 전·후 비교: 밀어서 보기 */
+  .compare { position: relative; aspect-ratio: 4 / 3; max-width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); margin: 18px 0 6px; background: var(--paper); }
+  .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 0; }
+  .compare .before { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
+  .compare .bar { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15); pointer-events: none; }
+  .compare .bar::after { content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; border-radius: 99px; background: #fff; color: #1d2320; display: grid; place-items: center; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .compare .tag { position: absolute; top: 12px; padding: 2px 12px; border-radius: 99px; background: rgba(20,24,22,.72); color: #fff; font-size: 13px; pointer-events: none; }
+  .compare .tag.l { left: 12px; } .compare .tag.r { right: 12px; }
+  .compare input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+  .compare:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .hint { font-size: 13.5px; color: var(--sub); }
+
+  /* 공사 기록: 가로로 넘기기 */
+  .build { list-style: none; margin: 14px 0 0; padding: 0 0 10px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 30%); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .build li { scroll-snap-align: start; }
+  .build figure { margin: 0; }
+  .build img { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; }
+  .build .step { font-family: var(--mono); font-size: 12px; color: var(--accent); display: block; margin-top: 8px; }
+  .wide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .grid3 .tall img { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; }
+
   footer { padding-block: 48px 72px; border-top: 1px solid var(--line); color: var(--sub); font-size: 14px; }
 
   /* lightbox */
@@ -316,12 +337,39 @@
 
     <h3>직접 만든 가게</h3>
     <p>가구, 커피바, 테이블부터 벽지와 페인트까지 인테리어를 전부 직접 했습니다.</p>
-    <div class="grid2">
-      <figure><img src="img/cafe-interior-before.jpg" alt="공사 중인 매장, 나무 상판을 올린 커피바" loading="lazy"><figcaption>공사 중 — 커피바를 직접 짜는 중</figcaption></figure>
-      <figure><img src="img/cafe-interior-hall.jpg" alt="완성된 매장" loading="lazy"><figcaption>완성된 매장</figcaption></figure>
+
+    <div class="compare" id="cmp" style="--pos:50%">
+      <img src="img/cafe-interior-tables.jpg" alt="완성된 홀: 직접 만든 나무 테이블과 의자" loading="lazy">
+      <img class="before" src="img/cafe-before-2-green.jpg" alt="공사 전 홀: 초록 페인트가 남은 빈 벽" loading="lazy">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="tag l">전</span><span class="tag r">후</span>
+      <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="공사 전과 후 사진 비교, 좌우로 밀기">
+    </div>
+    <p class="hint">가운데 막대를 좌우로 밀면 같은 자리의 공사 전과 후를 비교할 수 있습니다.</p>
+
+    <h3>공사 기록</h3>
+    <ol class="build">
+      <li><figure><img src="img/cafe-before-1-empty.jpg" alt="비어 있던 가게 안쪽" loading="lazy"><figcaption><span class="step">시작</span>비어 있던 가게</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-1-plan.jpg" alt="노트북에 띄운 도면과 치수를 적은 나무판" loading="lazy"><figcaption><span class="step">도면</span>노트북에 띄운 도면, 판마다 적은 치수</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-3-frame.jpg" alt="각재로 짠 커피바 골조" loading="lazy"><figcaption><span class="step">골조</span>각재로 커피바 뼈대 짜기</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-2-partition.jpg" alt="세워 둔 가벽" loading="lazy"><figcaption><span class="step">가벽</span>주방을 나누는 벽 세우기</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-0-counter.jpg" alt="커피바에 올린 나무 상판" loading="lazy"><figcaption><span class="step">상판</span>커피바에 나무 상판 올리기</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-drill.jpg" alt="나무에 나사를 박는 손" loading="lazy"><figcaption><span class="step">가구</span>하나씩 조립</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-4-chairs.jpg" alt="만들고 있는 나무 의자와 테이블" loading="lazy"><figcaption><span class="step">가구</span>의자와 테이블도 직접</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-5-wall.jpg" alt="미장한 벽과 칠한 커피바" loading="lazy"><figcaption><span class="step">마감</span>벽 마감과 상판 칠</figcaption></figure></li>
+      <li><figure><img src="img/cafe-mid-6-stain-chairs.jpg" alt="칠을 마친 커피바와 뒤쪽의 의자들" loading="lazy"><figcaption><span class="step">마감</span>칠을 마친 커피바, 뒤로 만든 의자들</figcaption></figure></li>
+      <li><figure><img src="img/cafe-after-window.jpg" alt="완성된 창가 자리" loading="lazy"><figcaption><span class="step">완성</span>창가 자리</figcaption></figure></li>
+    </ol>
+    <p class="hint">옆으로 넘겨 보세요.</p>
+
+    <div class="grid3">
+      <figure class="tall"><img src="img/cafe-interior-hall.jpg" alt="완성된 매장 전체" loading="lazy"><figcaption>완성된 매장</figcaption></figure>
+      <figure class="tall"><img src="img/cafe-interior-window.jpg" alt="창가 바 좌석" loading="lazy"><figcaption>창가 바 좌석</figcaption></figure>
+      <figure class="tall"><img src="img/cafe-after-window.jpg" alt="직접 만든 의자와 테이블" loading="lazy"><figcaption>직접 만든 의자와 테이블</figcaption></figure>
     </div>
 
     <h3>덜 달고 담백하게</h3>
+    <figure class="wide"><img src="img/cafe-donuts-box-2.jpg" alt="상자에 담긴 여러 가지 도넛" loading="lazy"><figcaption>스웰의 도넛</figcaption></figure>
     <p>도넛은 건강에 좋지 않다는 이미지가 있어서, 한 번 먹고 끝나는 디저트가 아니라 일상에서 꾸준히 찾아 먹는 디저트를 만들고 싶었습니다. 동업자는 “그래도 디저트는 좀 달아야 하지 않을까”라고 했고, 저는 매일 먹어도 부담 없는 디저트를 만들자고 했습니다. 지인들을 불러 모아 “매일 부담스럽지 않게 먹을 수 있는 맛이 무엇인지” 물으며 함께 맛을 정했고, 도넛도 두바이쫀득쿠키도 덜 달고 담백하게 만들었습니다.</p>
     <div class="reviews">
       <figure><img src="img/cafe-review-notsweet-1001.png" alt="리뷰: 도넛이 퐁신퐁신하고 너무 달지도 않고 맛있어요" loading="lazy"></figure>
@@ -334,7 +382,7 @@
     <p>제가 “가만히 있지 말고 뭐라도 해봐야 하지 않겠냐”고 했고, 동업자도 “그래, 할 수 있는 건 다 해봐야지”라고 했습니다. 인스타그램에서 두바이쫀득쿠키를 발견하고 인천 계산동의 유명한 가게에 가서 줄을 서서 사 왔습니다. 하루 이틀 배합을 맞춘 뒤, 발견한 지 일주일 안에 메뉴로 냈습니다.</p>
     <div class="grid2">
       <figure><img src="img/cafe-cookie-tray.jpg" alt="직접 만든 두바이쫀득쿠키" loading="lazy"><figcaption>직접 만든 두바이쫀득쿠키</figcaption></figure>
-      <figure><img src="img/cafe-donuts.jpg" alt="도넛" loading="lazy"><figcaption>함께 팔던 도넛</figcaption></figure>
+      <figure><img src="img/cafe-donuts-box-1.jpg" alt="상자에 담긴 도넛" loading="lazy"><figcaption>함께 팔던 도넛</figcaption></figure>
     </div>
 
     <figure><img src="img/sales-chart.png" alt="쫀득쿠키 출시 전후 월 매출 그래프" loading="lazy"><figcaption>쫀득쿠키 출시 전후 월 매출 (포스 월 정산 영수증 기준)</figcaption></figure>
@@ -388,6 +436,9 @@
   document.getElementById('lbClose').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+
+  const cmp = document.getElementById('cmp');
+  document.getElementById('cmpRange').addEventListener('input', e => { cmp.style.setProperty('--pos', e.target.value + '%'); });
 </script>
 </body>
 </html>
