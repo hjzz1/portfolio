@@ -249,11 +249,10 @@
     <p>검진표 PDF나 사진을 올리면 AI가 수치를 읽어 기록하고, 무엇을 조심해야 하는지 쉬운 말로 설명하는 앱입니다. 기록이 쌓이면 수치·체중·약 용량이 어떻게 변했는지 그래프로 보여 줍니다.</p>
     <figure>
       <img src="img/daengbody-checkup-3steps.png" alt="검진표 올리기, AI가 읽은 기록, 쉬운 설명 세 화면" loading="lazy">
-      <figcaption>뽀슬이의 실제 검진표(2026.05.23)를 올리기 → AI가 64개 값을 읽어 기록 → 확인할 점을 쉬운 말로 설명</figcaption>
+      <figcaption>뽀슬이의 실제 검진표(2026.05.23)를 올리기 → AI가 64개 값을 읽어 기록 → 확인할 점을 쉬운 말로 설명 (첫 체험 화면이라 ‘체험 미리보기’ 표시가 있습니다)</figcaption>
     </figure>
     <div class="tablebox"><table>
-      <tr><th style="width:18%">만든 방식</th><td>코딩은 배워 본 적이 없었습니다. 8월에 바이브코딩 온라인 강의를 들으며 시작했고, 강의는 웹사이트까지라 앱으로 옮기는 일은 AI와 처음부터 다시 했습니다. 기능은 Cursor와 Claude, 디자인은 Codex를 썼습니다.</td></tr>
-      <tr><th>기술</th><td>Next.js, Firebase, Google Gemini(검진표 인식)</td></tr>
+      <tr><th style="width:18%">만든 방식</th><td>코딩은 배워 본 적이 없었습니다. 8월에 바이브코딩 온라인 강의를 들으며 시작했고, 강의는 웹사이트까지라 앱으로 옮기는 일은 AI와 처음부터 다시 했습니다.</td></tr>
       <tr><th>규모</th><td>커밋 108개, 기능 모듈 21개, 자동 테스트 357개</td></tr>
     </table></div>
 
@@ -270,7 +269,7 @@
           <figure class="phone"><img src="img/daengbody-margin-before-1002.jpg" alt="여백 수정 전 화면" loading="lazy"><figcaption>고치기 전</figcaption></figure>
           <figure class="phone"><img src="img/daengbody-margin-after-1004.jpg" alt="여백 수정 후 화면" loading="lazy"><figcaption>고친 뒤</figcaption></figure>
         </div></div></li>
-      <li><span class="date">10/2</span><div><div class="what">아이폰에서 로그인해도 다시 로그인 화면으로 돌아감</div><div class="then">가게를 정리하기 전에 단골들께 드리려면 시간이 없었음. AI에게 고쳐 달라고 해, 다시 심사받지 않아도 되는 방법으로 하루 만에 해결</div>
+      <li><span class="date">10/2</span><div><div class="what">아이폰에서 로그인해도 다시 로그인 화면으로 돌아감</div><div class="then">가게를 정리하기 전에 단골들께 드리려면 시간이 없었음. AI에게 고쳐 달라고 해 하루 만에 해결</div>
         <figure class="phone"><img src="img/login-bug-2-back-to-login.jpg" alt="로그인 뒤 다시 로그인 화면으로 돌아간 화면" loading="lazy"><figcaption>로그인 뒤 다시 돌아간 로그인 화면</figcaption></figure></div></li>
       <li><span class="date">10/25</span><div><div class="what"><span class="stop">거부</span>구글 플레이 정식 출시 거부: 테스터가 실제로 쓰지 않았고, 의견을 받아 업데이트하지 않음</div><div class="then">같은 날 테스터를 다시 모아 재테스트 중</div>
         <figure><img src="img/googleplay-rejected-1025-masked.png" alt="10월 25일 구글 플레이 거부 메일" loading="lazy"><figcaption>10/25 구글 플레이 메일</figcaption></figure></div></li>
@@ -307,7 +306,7 @@
     <div class="tablebox"><table>
       <tr><th style="width:38%">막힌 곳</th><th>더한 기능</th></tr>
       <tr><td>왜 틀렸는지 모름</td><td>틀린 곳 짚기, AI 해설, 틀려도 답지 보기</td></tr>
-      <tr><td>안 배운 개념이 문제에 나옴</td><td>배운 것만 토대로 문제를 내도록 요청, 수업마다 안 배운 문법 점검</td></tr>
+      <tr><td>안 배운 개념이 문제에 나옴</td><td>배운 것만 토대로 문제를 내도록 요청</td></tr>
       <tr><td>어려운 문제를 다시 찾기 힘듦</td><td>오늘의 복습, 어려운 문제 모아 풀기</td></tr>
     </table></div>
 
@@ -391,12 +390,12 @@
     <figure><img src="img/sales-chart.png" alt="쫀득쿠키 출시 전후 월 매출 그래프" loading="lazy"><figcaption>쫀득쿠키 출시 전후 월 매출 (포스 월 정산 영수증 기준)</figcaption></figure>
     <div class="tablebox"><table>
       <tr><th>월</th><th style="text-align:right">실매출 (포스 영수증)</th><th>비고</th></tr>
-      <tr><td class="d">2025.9</td><td class="n">954만 원</td><td>출시 전</td></tr>
-      <tr><td class="d">2025.10</td><td class="n">942만 원</td><td>출시 전</td></tr>
-      <tr><td class="d">2025.11</td><td class="n">967만 원</td><td>출시 전</td></tr>
-      <tr><td class="d">2025.12</td><td class="n">1,851만 원</td><td>12월 초 쿠키 출시</td></tr>
-      <tr><td class="d">2026.1</td><td class="n">2,365만 원</td><td></td></tr>
-      <tr><td class="d">2026.2</td><td class="n">2,466만 원</td><td>출시 전 평균의 약 2.6배</td></tr>
+      <tr><td class="d">2025.9</td><td class="n">9,542,820원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.10</td><td class="n">9,423,600원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.11</td><td class="n">9,667,565원</td><td>출시 전</td></tr>
+      <tr><td class="d">2025.12</td><td class="n">18,506,145원</td><td>12월 초 쿠키 출시</td></tr>
+      <tr><td class="d">2026.1</td><td class="n">23,645,530원</td><td></td></tr>
+      <tr><td class="d">2026.2</td><td class="n">24,663,434원</td><td>출시 전 평균의 약 2.6배</td></tr>
     </table></div>
     <p>월 주문도 750건 안팎에서 1,541건(2026년 2월)으로 늘었습니다. 쫀득쿠키를 보고 처음 온 손님들이 도넛과 커피도 같이 사 가면서, 동네에서 맛있는 도넛 카페로 소문이 났습니다.</p>
     <div class="grid2">
