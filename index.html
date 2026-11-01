@@ -111,6 +111,16 @@
   .feat img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; }
   .feat-group { margin-top: 18px; }
   .feat-group h4 { font-family: var(--display); font-size: 15px; color: var(--accent); margin: 0 0 10px; }
+  .brief { display: grid; gap: 0; margin: 4px 0 8px; border-top: 1px solid var(--line); }
+  .brief > div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+  .brief dt { font-family: var(--display); font-weight: 700; color: var(--accent); font-size: 14px; padding-top: 2px; }
+  .brief dd { margin: 0; }
+  .feat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .feat-row .feat-group { margin-top: 0; }
+  .feat-row .grid2 { gap: 8px; }
+  .feat-row figcaption { font-size: 12.5px; }
+  @media (max-width: 720px) { .feat-row { grid-template-columns: minmax(0, 1fr); } .feat-row .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  ol.log .mail { max-width: 520px; }
   .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; }
   .shots figure { margin: 0; }
   .shots img { width: 100%; aspect-ratio: 9 / 16; object-fit: contain; padding: 6px; }
@@ -201,8 +211,6 @@
     .phone img { height: 300px; }
     .mail img { aspect-ratio: 3 / 2; }
     .wide img { aspect-ratio: 16 / 7; }
-    .feat-group .grid2 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .feat-group .grid2 figure { grid-column: span 2; display: grid; grid-template-columns: 42% 1fr; gap: 10px; align-items: start; }
     .feat img { aspect-ratio: 3 / 4; }
     .mail img { max-height: 260px; width: auto; max-width: 100%; aspect-ratio: auto; object-fit: contain; }
     .shots img { aspect-ratio: 9 / 15; }
@@ -277,70 +285,69 @@
     <h2>댕바디 — 보호자의 검진표를 읽기 쉽게</h2>
     <div class="meta"><span class="pill">2026.8 – 현재</span><span class="pill">iOS 출시</span><span class="pill pink">구글 플레이 재테스트 중</span></div>
 
-    <h3>어떤 불편이었나</h3>
-    <p>카페에는 강아지와 함께 오는 손님이 많았습니다. 한 단골 보호자와 이야기하다가 검진표 이야기를 들었습니다.</p>
-    <blockquote>1년에 한두 번 받는 건강검진표를 종이로 들고 다니다 보니 필요할 때마다 다시 찾아야 하고, 병원에서 설명을 들어도 시간이 지나면 수치의 뜻을 잊는다.<cite>단골 보호자에게 들은 이야기입니다. 다른 단골들도 “그런 게 있으면 너무 좋겠다”고 했습니다.</cite></blockquote>
-    <p>검진표만 그런 게 아니었습니다. 접종 내역이나 몸무게 같은 기록도 앱과 수첩, 서랍에 흩어져 있어서, 시간이 지나며 수치가 어떻게 변했는지 한눈에 볼 수 없었습니다.</p>
+    <dl class="brief">
+      <div><dt>문제</dt><dd>단골 보호자들은 1년에 한두 번 받는 검진표를 종이로 들고 다녀 다시 찾기 어려웠고, 병원에서 들은 설명도 금방 잊었습니다. 접종 내역과 몸무게 기록도 흩어져 있었습니다.</dd></div>
+      <div><dt>한 일</dt><dd>코딩을 배운 적 없이 바이브코딩 강의를 듣고 AI와 함께 만들었습니다. 검진표를 AI가 읽어 기록하고 쉬운 말로 설명하며, 쌓인 기록은 그래프와 병원용 리포트로 정리합니다.</dd></div>
+      <div><dt>결과</dt><dd>앱스토어에서 두 번 반려된 뒤 10월 1일 출시했습니다. 노견을 키우는 보호자에게서 관리가 수월해졌다는 후기를 받았습니다.</dd></div>
+      <div><dt>배운 점</dt><dd>만드는 것만큼 사람들이 직접 써 보고 말해 주는 과정이 중요하다는 것을 배웠습니다.</dd></div>
+    </dl>
 
-    <h3>무엇을 만들었나</h3>
-    <p>검진표 PDF나 사진을 올리면 AI가 수치를 읽어 기록하고, 무엇을 조심해야 하는지 쉬운 말로 설명해 주는 앱입니다. 기록이 쌓이면 수치와 체중, 약 용량이 어떻게 변했는지 그래프로 보여 줍니다.</p>
+    <h3>핵심 흐름</h3>
     <div class="shots">
-      <figure><img src="img/daengbody-checkup-1-upload.png" alt="검진표 PDF를 올리는 화면" loading="lazy"><figcaption><span class="step">1</span>검진표를 올립니다</figcaption></figure>
-      <figure><img src="img/daengbody-checkup-2-read.png" alt="AI가 읽은 검진 수치 기록 화면" loading="lazy"><figcaption><span class="step">2</span>AI가 64개 값을 읽어 기록합니다</figcaption></figure>
-      <figure><img src="img/daengbody-checkup-3-explain.png" alt="확인할 점을 쉬운 말로 설명하는 화면" loading="lazy"><figcaption><span class="step">3</span>확인할 점을 쉬운 말로 알려 줍니다</figcaption></figure>
-      <figure><img src="img/daengbody-weight-graph.png" alt="몸무게 기록이 그래프로 이어지는 화면" loading="lazy"><figcaption><span class="step">4</span>쌓인 기록을 그래프로 봅니다</figcaption></figure>
+      <figure><img src="img/daengbody-checkup-1-upload.png" alt="검진표 PDF를 올리는 화면" loading="lazy"><figcaption><span class="step">1</span>검진표 올리기</figcaption></figure>
+      <figure><img src="img/daengbody-checkup-2-read.png" alt="AI가 읽은 검진 수치 기록 화면" loading="lazy"><figcaption><span class="step">2</span>AI가 64개 값을 읽어 기록</figcaption></figure>
+      <figure><img src="img/daengbody-checkup-3-explain.png" alt="확인할 점을 쉬운 말로 설명하는 화면" loading="lazy"><figcaption><span class="step">3</span>확인할 점을 쉬운 말로 설명</figcaption></figure>
+      <figure><img src="img/daengbody-weight-graph.png" alt="몸무게 기록이 그래프로 이어지는 화면" loading="lazy"><figcaption><span class="step">4</span>쌓인 기록을 그래프로</figcaption></figure>
     </div>
-    <p class="hint">1~3번은 뽀슬이의 실제 검진표(2026.05.23)로 찍은 화면이고, 4번은 몸무게 기록 화면입니다. 3번은 첫 체험 화면이라 ‘체험 미리보기’ 표시가 있습니다.</p>
+    <p class="hint">1~3번은 뽀슬이의 실제 검진표(2026.05.23) 화면입니다. 3번은 첫 체험 화면이라 ‘체험 미리보기’ 표시가 있습니다.</p>
 
     <h3>주요 기능</h3>
-    <p>보호자가 실제로 쓰는 순서에 맞춰 기능을 나눴습니다. 기록하고, 쌓인 기록을 돌아보고, 병원에 갈 때 꺼내 보는 흐름입니다.</p>
+    <div class="feat-row">
     <div class="feat-group">
       <h4>기록할 때</h4>
       <div class="grid2">
-        <figure class="feat"><img src="img/daengbody-feature-checkup-add-dental.jpg" alt="건강검진 추가 화면, 치아 차트" loading="lazy"><figcaption>검진표 PDF나 사진을 올리면 항목과 수치가 자동으로 채워집니다. 치과 검진은 치아 차트에서 치아를 눌러 소견을 남길 수 있습니다.</figcaption></figure>
-        <figure class="feat"><img src="img/daengbody-feature-hospital-visit.jpg" alt="병원 방문 기록 화면" loading="lazy"><figcaption>병원에 다녀오면 방문 목적과 진료 분야, 검사·처치, 처방을 남깁니다. 다음 병원 방문 준비에 그대로 이어집니다.</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-checkup-add-dental.jpg" alt="건강검진 추가 화면, 치아 차트" loading="lazy"><figcaption>검진표 자동 채우기와 치아 차트</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-hospital-visit.jpg" alt="병원 방문 기록 화면" loading="lazy"><figcaption>병원 방문 기록</figcaption></figure>
       </div>
     </div>
     <div class="feat-group">
       <h4>기록이 쌓이면</h4>
       <div class="grid2">
-        <figure class="feat"><img src="img/daengbody-feature-monthly-report.jpg" alt="월간 건강 리포트 화면" loading="lazy"><figcaption>한 달 기록을 AI가 요약한 월간 건강 리포트입니다. 기록이 적으면 적다고 솔직하게 알려 줍니다.</figcaption></figure>
-        <figure class="feat"><img src="img/daengbody-feature-monthly-analysis.jpg" alt="상세 건강 분석 화면" loading="lazy"><figcaption>상세 분석은 검진, 병원 방문, 생활 기록을 나눠 보고 다음 달에 무엇을 기록하면 좋을지 알려 줍니다.</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-monthly-report.jpg" alt="월간 건강 리포트 화면" loading="lazy"><figcaption>AI 월간 건강 리포트</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-monthly-analysis.jpg" alt="상세 건강 분석 화면" loading="lazy"><figcaption>상세 건강 분석</figcaption></figure>
       </div>
     </div>
     <div class="feat-group">
       <h4>병원에 갈 때</h4>
       <div class="grid2">
-        <figure class="feat"><img src="img/daengbody-feature-hospital-prep.jpg" alt="병원 방문 준비 화면" loading="lazy"><figcaption>최근 기록과 물어볼 것을 한 장에 모아 수의사에게 보여 줍니다. 과를 고르면 그 과에서 정상범위를 벗어난 값만 추려 줍니다.</figcaption></figure>
-        <figure class="feat"><img src="img/daengbody-feature-hospital-report.jpg" alt="병원용 건강 리포트 화면" loading="lazy"><figcaption>기간을 골라 병원용 리포트를 만들고 PDF나 이미지로 저장할 수 있습니다. 보호자 이름과 연락처는 넣지 않습니다.</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-hospital-prep.jpg" alt="병원 방문 준비 화면" loading="lazy"><figcaption>병원 방문 준비 — 과별로 정상범위를 벗어난 값만 표시</figcaption></figure>
+        <figure class="feat"><img src="img/daengbody-feature-hospital-report.jpg" alt="병원용 건강 리포트 화면" loading="lazy"><figcaption>병원용 리포트 — PDF·이미지로 저장</figcaption></figure>
       </div>
     </div>
-    <p class="hint">기능 화면은 누르면 크게 볼 수 있습니다. 모든 요약에는 진단이 아니라는 안내가 함께 표시됩니다.</p>
-    <p>코딩은 배워 본 적이 없었습니다. 8월에 바이브코딩 온라인 강의를 들으며 시작했는데, 강의에서 배운 건 웹사이트까지였습니다. 그래서 앱으로 옮기는 일은 AI와 처음부터 다시 했습니다. 지금까지 커밋 108개, 기능 모듈 21개, 자동 테스트 357개가 쌓였습니다.</p>
+
+    </div>
 
     <h3>막히고 다시 한 과정</h3>
     <ol class="log">
-      <li><span class="date">8/28</span><div><div class="what">처음 만들기 시작했습니다.</div></div></li>
-      <li><span class="date">9월 말</span><div><div class="what"><span class="stop">반려</span>앱스토어 첫 심사에서 반려됐습니다. 권한 설명에 도구가 넣은 기본 문구가 그대로 남아 있었습니다.</div><div class="then">카메라와 위치를 실제로 어디에 쓰는지 적고, 쓰지 않는 마이크 권한은 지웠습니다.</div></div></li>
-      <li><span class="date">9/25</span><div><div class="what"><span class="stop">반려</span>두 번째 심사에서도 반려됐습니다. 앱 안에서 Apple 로그인이 끝나지 않았습니다.</div><div class="then">로그인 방식을 바꿔서 9월 29일에 다시 냈습니다.</div>
-        <figure class="mail"><img src="img/appstore-rejected-2-0925.png" alt="9월 25일 앱스토어 2차 반려 메시지" loading="lazy"><figcaption>9/25 두 번째 반려 — Apple로 가입을 끝낼 수 없다는 내용</figcaption></figure></div></li>
+      <li><span class="date">8/28</span><div><div class="what">개발을 시작했습니다.</div></div></li>
+      <li><span class="date">9월 말</span><div><div class="what"><span class="stop">반려</span>앱스토어 1차 반려: 권한 설명에 기본 문구가 남아 있었습니다.</div><div class="then">실제 용도를 적고 쓰지 않는 마이크 권한을 지웠습니다.</div></div></li>
+      <li><span class="date">9/25</span><div><div class="what"><span class="stop">반려</span>2차 반려: 앱 안에서 Apple 로그인이 끝나지 않았습니다.</div><div class="then">로그인 방식을 바꿔 9월 29일 다시 냈습니다.</div>
+        <figure class="mail"><img src="img/appstore-rejected-2-0925.png" alt="9월 25일 앱스토어 2차 반려 메시지" loading="lazy"><figcaption>9/25 두 번째 반려</figcaption></figure></div></li>
       <li><span class="date">10/1</span><div><div class="what">승인을 받아 iOS로 출시했습니다.</div>
         <figure class="mail"><img src="img/appstore-2-approved-1.0-1001-masked.png" alt="10월 1일 앱스토어 승인 메일" loading="lazy"><figcaption>10/1 승인 메일</figcaption></figure></div></li>
-      <li><span class="date">10월 초</span><div><div class="what">출시하고 바로 두 가지를 더 고쳤습니다.</div><div class="then">아이폰에서는 로그인해도 다시 로그인 화면으로 돌아가는 문제가 있었습니다. 가게를 정리하기 전에 단골들께 드려야 해서 AI에게 고쳐 달라고 했고, 하루 만에 해결했습니다.</div><div class="then">지인에게 테스트를 부탁했더니 들어가자마자 화면 위쪽 여백이 너무 크다고 했습니다. 이것도 고쳐서 10월 3일 1.1 업데이트로 냈습니다.</div>
+      <li><span class="date">10월 초</span><div><div class="what">출시 직후 두 가지를 더 고쳤습니다.</div><div class="then">아이폰 로그인 오류는 AI에게 고쳐 달라고 해 하루 만에 해결했습니다.</div><div class="then">지인이 화면 위쪽 여백이 너무 크다고 해서 고쳐 10월 3일 업데이트했습니다.</div>
         <div class="grid3">
-          <figure class="phone"><img src="img/login-bug-2-back-to-login.jpg" alt="로그인 뒤 다시 로그인 화면으로 돌아간 화면" loading="lazy"><figcaption>로그인 뒤 다시 돌아간 화면</figcaption></figure>
+          <figure class="phone"><img src="img/login-bug-2-back-to-login.jpg" alt="로그인 뒤 다시 로그인 화면으로 돌아간 화면" loading="lazy"><figcaption>로그인 오류</figcaption></figure>
           <figure class="phone"><img src="img/daengbody-margin-before-1002.jpg" alt="여백 수정 전 화면" loading="lazy"><figcaption>여백 고치기 전</figcaption></figure>
           <figure class="phone"><img src="img/daengbody-margin-after-1004.jpg" alt="여백 수정 후 화면" loading="lazy"><figcaption>여백 고친 뒤</figcaption></figure>
         </div></div></li>
-      <li><span class="date">10/25</span><div><div class="what"><span class="stop">거부</span>구글 플레이에서 정식 출시를 거부당했습니다. 테스터가 앱을 실제로 쓰지 않았고, 의견을 받아 고친 업데이트도 없었다는 이유였습니다.</div><div class="then">이번에는 실제로 써 줄 사람이 필요했습니다. 그래서 같은 날, 앱을 만든 사람들이 서로의 앱을 직접 써 주는 오픈카카오톡방에 들어갔습니다. 제가 다른 분들의 앱을 써 보고, 그분들도 댕바디를 직접 써 보는 방식으로 다시 테스트하고 있습니다.</div>
+      <li><span class="date">10/25</span><div><div class="what"><span class="stop">거부</span>구글 플레이 출시 거부: 테스터가 실제로 쓰지 않았습니다.</div><div class="then">같은 날 서로의 앱을 직접 써 주는 테스터 모임에 들어가 다시 테스트하고 있습니다.</div>
         <figure class="mail"><img src="img/googleplay-rejected-1025-masked.png" alt="10월 25일 구글 플레이 거부 메일" loading="lazy"><figcaption>10/25 구글 플레이 메일</figcaption></figure></div></li>
     </ol>
 
-    <h3>써 본 사람들의 반응</h3>
-    <p>가게를 정리하기 전에 단골 보호자들께 앱을 드렸고, 써 본 분들은 “괜찮다, 계속 쓸 것 같다”고 했습니다. 노견을 키우는 한 보호자는 병원 기록을 휴대폰 메모로 찾아가며 적던 게 불편했는데, 댕바디를 쓰고 나서 관리가 수월해졌다는 후기를 보내 주셨습니다.</p>
-    <blockquote>기록하기도 쉽고 지난 날부터 현재까지 애기 전반적인 건강 상태를 한눈에 확인하기 쉬워서 너무 좋아요!<cite>노견을 키우는 보호자의 카카오톡 후기</cite></blockquote>
-    <figure class="phone"><img src="img/daengbody-review-kakao.png" alt="댕바디 사용자 카카오톡 후기" loading="lazy"><figcaption>보호자가 보내 준 후기 원본</figcaption></figure>
-    <p>구글 플레이 반려를 겪으면서, 만드는 것만큼 사람들이 직접 써 보고 말해 주는 과정이 중요하다는 걸 배웠습니다.</p>
+    <h3>사용자 후기</h3>
+    <figure class="phone"><img src="img/daengbody-review-kakao.png" alt="댕바디 사용자 카카오톡 후기" loading="lazy"><figcaption>노견을 키우는 보호자가 보내 준 후기</figcaption></figure>
+    <p class="hint">커밋 108개 · 기능 모듈 21개 · 자동 테스트 357개</p>
   </div>
 </section>
 
