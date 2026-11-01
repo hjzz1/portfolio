@@ -105,7 +105,13 @@
   .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .grid2 figure, .grid3 figure { margin: 0; }
-  .phone img { max-height: 520px; width: auto; margin: 0 auto; }
+  .phone img { height: 440px; max-height: none; width: auto; max-width: 100%; object-fit: contain; margin: 0 auto; }
+  .mail img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: top; }
+  .phone figcaption { text-align: center; }
+  .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; aspect-ratio: 9 / 16; object-fit: contain; padding: 6px; }
+  .shots .step { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-right: 6px; }
 
   .tablebox { overflow-x: auto; margin: 10px 0 18px; }
   table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 520px; }
@@ -168,7 +174,8 @@
     .grid2 { grid-template-columns: minmax(0, 1fr); }
     .grid2.keep { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     ol.log li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-    .phone img { max-height: 420px; }
+    .phone img { height: 360px; }
+    .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 </style>
@@ -247,11 +254,13 @@
 
     <h3>만든 것</h3>
     <p>검진표 PDF나 사진을 올리면 AI가 수치를 읽어 기록하고, 무엇을 조심해야 하는지 쉬운 말로 설명하는 앱입니다. 기록이 쌓이면 수치·체중·약 용량이 어떻게 변했는지 그래프로 보여 줍니다.</p>
-    <figure>
-      <img src="img/daengbody-checkup-3steps.png" alt="검진표 올리기, AI가 읽은 기록, 쉬운 설명 세 화면" loading="lazy">
-      <figcaption>뽀슬이의 실제 검진표(2026.05.23)를 올리기 → AI가 64개 값을 읽어 기록 → 확인할 점을 쉬운 말로 설명 (첫 체험 화면이라 ‘체험 미리보기’ 표시가 있습니다)</figcaption>
-    </figure>
-    <figure class="phone"><img src="img/daengbody-weight-graph.png" alt="뽀슬이 몸무게 기록이 그래프로 이어지는 화면" loading="lazy"><figcaption>기록이 쌓이면 변화를 그래프로 보여 주는 화면 (몸무게)</figcaption></figure>
+    <div class="shots">
+      <figure><img src="img/daengbody-checkup-1-upload.png" alt="검진표 PDF를 올리는 화면" loading="lazy"><figcaption><span class="step">1</span>검진표 올리기</figcaption></figure>
+      <figure><img src="img/daengbody-checkup-2-read.png" alt="AI가 읽은 검진 수치 기록 화면" loading="lazy"><figcaption><span class="step">2</span>AI가 64개 값을 읽어 기록</figcaption></figure>
+      <figure><img src="img/daengbody-checkup-3-explain.png" alt="확인할 점을 쉬운 말로 설명하는 화면" loading="lazy"><figcaption><span class="step">3</span>확인할 점을 쉬운 말로 설명</figcaption></figure>
+      <figure><img src="img/daengbody-weight-graph.png" alt="몸무게 기록이 그래프로 이어지는 화면" loading="lazy"><figcaption><span class="step">4</span>쌓인 기록을 그래프로</figcaption></figure>
+    </div>
+    <p class="hint">뽀슬이의 실제 검진표(2026.05.23)로 찍은 화면입니다. 3번은 첫 체험 화면이라 ‘체험 미리보기’ 표시가 있습니다.</p>
     <div class="tablebox"><table>
       <tr><th style="width:18%">만든 방식</th><td>코딩은 배워 본 적이 없었습니다. 8월에 바이브코딩 온라인 강의를 들으며 시작했고, 강의는 웹사이트까지라 앱으로 옮기는 일은 AI와 처음부터 다시 했습니다.</td></tr>
       <tr><th>규모</th><td>커밋 108개, 기능 모듈 21개, 자동 테스트 357개</td></tr>
@@ -262,9 +271,9 @@
       <li><span class="date">8/28</span><div><div class="what">처음 만들기 시작</div></div></li>
       <li><span class="date">9/24</span><div><div class="what"><span class="stop">반려</span>앱스토어 1차 반려: 권한 설명이 도구가 넣은 기본 문구</div><div class="then">카메라·위치의 실제 용도를 적고, 쓰지 않는 마이크 권한을 지움</div></div></li>
       <li><span class="date">9/25</span><div><div class="what"><span class="stop">반려</span>2차 반려: 앱 안에서 Apple 로그인이 끝나지 않음</div><div class="then">로그인 방식을 바꿔 9/29 다시 제출</div>
-        <figure><img src="img/appstore-rejected-2-0925.png" alt="9월 25일 앱스토어 2차 반려 메시지" loading="lazy"><figcaption>9/25 2차 반려 — Guideline 2.1(a), Apple로 가입을 끝낼 수 없음</figcaption></figure></div></li>
+        <figure class="mail"><img src="img/appstore-rejected-2-0925.png" alt="9월 25일 앱스토어 2차 반려 메시지" loading="lazy"><figcaption>9/25 2차 반려 — Guideline 2.1(a), Apple로 가입을 끝낼 수 없음</figcaption></figure></div></li>
       <li><span class="date">10/1</span><div><div class="what">승인, iOS 출시</div>
-        <figure><img src="img/appstore-2-approved-1.0-1001-masked.png" alt="10월 1일 앱스토어 승인 메일" loading="lazy"><figcaption>10/1 승인 메일</figcaption></figure></div></li>
+        <figure class="mail"><img src="img/appstore-2-approved-1.0-1001-masked.png" alt="10월 1일 앱스토어 승인 메일" loading="lazy"><figcaption>10/1 승인 메일</figcaption></figure></div></li>
       <li><span class="date">10월 초</span><div><div class="what">가게에 놀러 온 동기에게 테스트를 부탁 → “화면 위쪽 여백이 너무 크다”</div><div class="then">고쳐서 10/2 제출, 10/3 1.1 업데이트 승인</div>
         <div class="grid2 keep">
           <figure class="phone"><img src="img/daengbody-margin-before-1002.jpg" alt="여백 수정 전 화면" loading="lazy"><figcaption>고치기 전</figcaption></figure>
@@ -273,7 +282,7 @@
       <li><span class="date">10/2</span><div><div class="what">아이폰에서 로그인해도 다시 로그인 화면으로 돌아감</div><div class="then">가게를 정리하기 전에 단골들께 드리려면 시간이 없었음. AI에게 고쳐 달라고 해 하루 만에 해결</div>
         <figure class="phone"><img src="img/login-bug-2-back-to-login.jpg" alt="로그인 뒤 다시 로그인 화면으로 돌아간 화면" loading="lazy"><figcaption>로그인 뒤 다시 돌아간 로그인 화면</figcaption></figure></div></li>
       <li><span class="date">10/25</span><div><div class="what"><span class="stop">거부</span>구글 플레이 정식 출시 거부: 테스터가 실제로 쓰지 않았고, 의견을 받아 업데이트하지 않음</div><div class="then">같은 날 테스터를 다시 모아 재테스트 중</div>
-        <figure><img src="img/googleplay-rejected-1025-masked.png" alt="10월 25일 구글 플레이 거부 메일" loading="lazy"><figcaption>10/25 구글 플레이 메일</figcaption></figure></div></li>
+        <figure class="mail"><img src="img/googleplay-rejected-1025-masked.png" alt="10월 25일 구글 플레이 거부 메일" loading="lazy"><figcaption>10/25 구글 플레이 메일</figcaption></figure></div></li>
     </ol>
 
     <h3>결과와 배운 것</h3>
